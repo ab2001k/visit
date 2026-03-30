@@ -144,7 +144,7 @@
             </a>
 
             <a href="https://ab2001k.github.io/wedding-countdown" target="_blank" class="project-card bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700">
-                <i class="fas fa-rings text-3xl text-pink-400 mb-4 block"></i>
+                <i class="fas fa-heart text-3xl text-pink-400 mb-4 block"></i>
                 <h3 class="text-xl font-bold mb-2 text-white">Event Countdown Systems</h3>
                 <p class="text-gray-400 text-sm">Responsive countdown web applications bundled with physical event invitations.</p>
             </a>
@@ -196,7 +196,13 @@
 
     <footer class="bg-gray-950 py-16 border-t border-gray-800 pb-28">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h3 class="text-lg font-bold text-white mb-6 uppercase tracking-widest">Connect & Follow</h3>
+            <h3 class="text-lg font-bold text-white mb-8 uppercase tracking-widest">Connect & Follow</h3>
+            
+            <div class="mb-8">
+                <a href="tel:+918822967314" class="inline-flex items-center gap-3 text-green-400 hover:text-green-300 transition-colors text-2xl font-bold bg-gray-900 border border-gray-800 py-3 px-6 rounded-full shadow-lg hover:shadow-green-500/20" title="Call Designer Directly">
+                    <i class="fas fa-phone-alt"></i> +91 88229 67314
+                </a>
+            </div>
             
             <div class="flex justify-center gap-6 mb-8">
                 <a href="https://facebook.com/ab2001k" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors text-2xl" title="Facebook">
@@ -226,7 +232,7 @@
             <h3 class="text-2xl font-bold text-white mb-2">Desktop Optimized</h3>
             <p class="text-gray-400 text-sm mb-8 leading-relaxed">This specific application is highly optimized for PC and Laptop displays. Navigating via a mobile device may result in limited UI functionality.</p>
             <div class="flex flex-col gap-3">
-                <a id="proceedBtn" href="#" class="w-full py-3 rounded-md bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors">Proceed Anyway</a>
+                <a id="proceedBtn" href="#" target="_blank" onclick="closeModal()" class="w-full py-3 rounded-md bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors inline-block text-center">Proceed Anyway</a>
                 <button onclick="closeModal()" class="w-full py-3 rounded-md text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 transition-colors">Cancel</button>
             </div>
         </div>
@@ -250,7 +256,8 @@
         const data = [
             { word: "Digital Portfolios", icon: "fas fa-briefcase text-blue-400" },
             { word: "Web Games", icon: "fas fa-gamepad text-green-400" },
-            { word: "Wedding Websites", icon: "fas fa-rings text-pink-400" },
+            // Changed icon here to fa-heart for visibility
+            { word: "Wedding Websites", icon: "fas fa-heart text-pink-400" }, 
             { word: "Wish Links", icon: "fas fa-star text-yellow-400" },
             { word: "Utility Tools", icon: "fas fa-tools text-orange-400" }
         ];
