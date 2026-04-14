@@ -78,6 +78,30 @@
         .font-bengali {
             font-family: 'Tiro Bangla', serif;
         }
+
+        /* NEW ANIMATIONS FOR ADVERTISEMENT SECTION */
+        
+        /* 1. TV Commercial Word Pop */
+        @keyframes popWord {
+            0% { opacity: 0; transform: scale(0.3) translateY(30px); }
+            50% { opacity: 1; transform: scale(1.1) translateY(-5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .pop-word {
+            display: inline-block;
+            opacity: 0;
+            animation: popWord 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* 2. Gentle Continuous Shake for Checkboxes */
+        @keyframes gentleJiggle {
+            0%, 100% { transform: rotate(0deg) translateX(0); }
+            25% { transform: rotate(-1deg) translateX(-2px); }
+            75% { transform: rotate(1deg) translateX(2px); }
+        }
+        .jiggle-box {
+            animation: gentleJiggle 3s infinite ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans antialiased relative overflow-x-hidden">
@@ -129,29 +153,33 @@
             </div>
 
             <div class="flex-1 text-center md:text-left pt-6 md:pt-0">
-                <h2 class="text-3xl md:text-5xl font-black text-[#d11a2a] uppercase leading-tight mb-2 drop-shadow-md" style="text-shadow: 2px 2px 0px #fff;">
-                    Apply For Meghalaya Migrant Certificate!
+                <h2 class="text-3xl md:text-5xl font-black text-[#d11a2a] uppercase leading-tight mb-2 drop-shadow-md flex flex-wrap justify-center md:justify-start gap-2" style="text-shadow: 2px 2px 0px #fff;">
+                    <span class="pop-word" style="animation-delay: 0.2s">Apply</span>
+                    <span class="pop-word" style="animation-delay: 0.5s">For</span>
+                    <span class="pop-word" style="animation-delay: 0.8s">Meghalaya</span>
+                    <span class="pop-word" style="animation-delay: 1.1s">Migrant</span>
+                    <span class="pop-word text-[#004085]" style="animation-delay: 1.5s; text-shadow: 2px 2px 0px #fff;">Certificate!</span>
                 </h2>
-                <p class="font-bengali text-xl md:text-3xl font-bold text-[#004085] mb-6 drop-shadow-sm" style="text-shadow: 1px 1px 0px #fff;">
+                <p class="font-bengali text-xl md:text-3xl font-bold text-[#004085] mb-6 drop-shadow-sm pop-word" style="animation-delay: 2.0s; text-shadow: 1px 1px 0px #fff;">
                     এখানে মেঘালয় মাইগ্রেন্ট সার্টিফিকেটের জন্য আবেদন করুন!
                 </p>
 
                 <div class="space-y-3 mb-8 text-left max-w-2xl mx-auto md:mx-0">
-                    <div class="flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm">
+                    <div class="jiggle-box flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm" style="animation-delay: 0s;">
                         <span class="text-2xl mt-1">✅</span>
                         <div>
                             <span class="font-bold text-lg md:text-xl text-gray-900">Hassle-free entry into Meghalaya for work</span><br>
                             <span class="font-bengali text-base md:text-lg text-gray-700">কাজের বা ভ্রমণের জন্য মেঘালয়ে সহজে প্রবেশ করুন</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm">
+                    <div class="jiggle-box flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm" style="animation-delay: 0.5s;">
                         <span class="text-2xl mt-1">✅</span>
                         <div>
                             <span class="font-bold text-lg md:text-xl text-gray-900">Avoid delays & fines at border checkpoints</span><br>
                             <span class="font-bengali text-base md:text-lg text-gray-700">বর্ডার চেকপয়েন্টে বিলম্ব এবং জরিমানা এড়ান</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm">
+                    <div class="jiggle-box flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm" style="animation-delay: 1s;">
                         <span class="text-2xl mt-1">✅</span>
                         <div>
                             <span class="font-bold text-lg md:text-xl text-gray-900">Fast & easy online registration process</span><br>
@@ -160,7 +188,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-900 text-white px-6 py-4 rounded-xl inline-block w-full md:w-auto shadow-lg text-center md:text-left">
+                <div class="bg-gray-900 text-white px-6 py-4 rounded-xl inline-block w-full md:w-auto shadow-lg text-center md:text-left pop-word" style="animation-delay: 2.2s;">
                     <div class="text-xl md:text-2xl font-black text-[#ffd700] tracking-wide mb-1">APARAJITA STUDIO & OFFSET PRINTING</div>
                     <a href="https://ab2001k.github.io/visit/" class="text-sm md:text-base font-bold text-blue-300 hover:text-white transition-colors">🌐 ab2001k.github.io/visit/</a>
                 </div>
@@ -168,8 +196,8 @@
 
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-2xl flex flex-col items-center w-full md:w-auto md:min-w-[320px] transform transition-transform group-hover:scale-105">
                 <div class="text-2xl md:text-3xl font-black text-[#d11a2a] mb-4 uppercase text-center w-full tracking-wider">Click or Scan</div>
-                <img src="frame.png" alt="Scan QR Code" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-6">
-                <div class="bg-[#25D366] text-[#111] text-2xl md:text-3xl font-black py-4 px-6 rounded-full w-full text-center shadow-[0_5px_15px_rgba(37,211,102,0.4)]">
+                <img src="frame.png" alt="Scan QR Code" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-6 transition-transform hover:scale-105 duration-300">
+                <div class="bg-[#25D366] text-[#111] text-2xl md:text-3xl font-black py-4 px-6 rounded-full w-full text-center shadow-[0_5px_15px_rgba(37,211,102,0.4)] transition-all duration-300 hover:bg-[#1fbf58] hover:shadow-[0_0_30px_rgba(37,211,102,1)] hover:scale-110 hover:text-white cursor-pointer">
                     📞 +91 8638845069
                 </div>
             </div>
@@ -406,7 +434,6 @@
         function confirmGame(url) {
             proceedBtn.href = url;
             modal.classList.remove('hidden');
-            // Small delay to allow CSS display to apply before fading in
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modalContent.classList.remove('scale-95');
@@ -420,10 +447,10 @@
             modalContent.classList.add('scale-95');
             setTimeout(() => {
                 modal.classList.add('hidden');
-            }, 300); // Wait for transition
+            }, 300); 
         }
 
-        // --- NEW PROMO MODAL LOGIC ---
+        // --- PROMO MODAL LOGIC ---
         const promoModal = document.getElementById('promoModal');
         const promoModalContent = document.getElementById('promoModalContent');
 
@@ -443,14 +470,14 @@
             setTimeout(() => {
                 promoModal.classList.add('hidden');
             }, 300);
+            
+            // Stop event bubbling if a link/button inside the ad is clicked, preventing re-opening issues
+            event.stopPropagation();
         }
 
         window.onload = () => {
-            updateIcon(data[0].icon); // Set initial icon
+            updateIcon(data[0].icon); 
             setTimeout(typeWriter, 500);
-            
-            // REMOVED the automatic 1.5 second promo modal pop-up
-            // Now users will only see the popup if they click the beautiful ad banner!
         };
     </script>
 </body>
