@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* Import Bengali Font for the Poster */
+        @import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap');
+
         /* Wish-Site Style Marquee */
         .marquee-container {
             overflow: hidden;
@@ -70,6 +73,11 @@
             opacity: 1;
             transform: scale(1);
         }
+        
+        /* Utility for Bengali Font */
+        .font-bengali {
+            font-family: 'Tiro Bangla', serif;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans antialiased relative overflow-x-hidden">
@@ -113,6 +121,61 @@
         </div>
     </header>
 
+    <section id="advertisement" class="py-12 px-4 max-w-6xl mx-auto relative z-10 w-full cursor-pointer group" onclick="showPromoModal()">
+        <div class="relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-[0_0_40px_rgba(255,167,81,0.4)] bg-gradient-to-br from-[#ffe259] to-[#ffa751] text-gray-900 flex flex-col md:flex-row items-center p-6 md:p-10 gap-8">
+            
+            <div class="absolute top-0 right-0 bg-black/80 backdrop-blur text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-widest z-20">
+                Sponsored Promotion
+            </div>
+
+            <div class="flex-1 text-center md:text-left pt-6 md:pt-0">
+                <h2 class="text-3xl md:text-5xl font-black text-[#d11a2a] uppercase leading-tight mb-2 drop-shadow-md" style="text-shadow: 2px 2px 0px #fff;">
+                    Apply For Meghalaya Migrant Certificate!
+                </h2>
+                <p class="font-bengali text-xl md:text-3xl font-bold text-[#004085] mb-6 drop-shadow-sm" style="text-shadow: 1px 1px 0px #fff;">
+                    এখানে মেঘালয় মাইগ্রেন্ট সার্টিফিকেটের জন্য আবেদন করুন!
+                </p>
+
+                <div class="space-y-3 mb-8 text-left max-w-2xl mx-auto md:mx-0">
+                    <div class="flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm">
+                        <span class="text-2xl mt-1">✅</span>
+                        <div>
+                            <span class="font-bold text-lg md:text-xl text-gray-900">Hassle-free entry into Meghalaya for work</span><br>
+                            <span class="font-bengali text-base md:text-lg text-gray-700">কাজের বা ভ্রমণের জন্য মেঘালয়ে সহজে প্রবেশ করুন</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm">
+                        <span class="text-2xl mt-1">✅</span>
+                        <div>
+                            <span class="font-bold text-lg md:text-xl text-gray-900">Avoid delays & fines at border checkpoints</span><br>
+                            <span class="font-bengali text-base md:text-lg text-gray-700">বর্ডার চেকপয়েন্টে বিলম্ব এবং জরিমানা এড়ান</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm">
+                        <span class="text-2xl mt-1">✅</span>
+                        <div>
+                            <span class="font-bold text-lg md:text-xl text-gray-900">Fast & easy online registration process</span><br>
+                            <span class="font-bengali text-base md:text-lg text-gray-700">খুব দ্রুত এবং সহজ অনলাইন রেজিস্ট্রেশন প্রক্রিয়া</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 text-white px-6 py-4 rounded-xl inline-block w-full md:w-auto shadow-lg text-center md:text-left">
+                    <div class="text-xl md:text-2xl font-black text-[#ffd700] tracking-wide mb-1">APARAJITA STUDIO & OFFSET PRINTING</div>
+                    <a href="https://ab2001k.github.io/visit/" class="text-sm md:text-base font-bold text-blue-300 hover:text-white transition-colors">🌐 ab2001k.github.io/visit/</a>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-2xl flex flex-col items-center w-full md:w-auto md:min-w-[320px] transform transition-transform group-hover:scale-105">
+                <div class="text-2xl md:text-3xl font-black text-[#d11a2a] mb-4 uppercase text-center w-full tracking-wider">Click or Scan</div>
+                <img src="frame.png" alt="Scan QR Code" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-6">
+                <div class="bg-[#25D366] text-[#111] text-2xl md:text-3xl font-black py-4 px-6 rounded-full w-full text-center shadow-[0_5px_15px_rgba(37,211,102,0.4)]">
+                    📞 +91 8638845069
+                </div>
+            </div>
+            
+        </div>
+    </section>
     <section id="about" class="py-20 px-4 md:px-8 max-w-4xl mx-auto relative z-10 border-b border-gray-800">
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 border-l-4 border-blue-500 pl-4 uppercase tracking-wider">
             Professional Overview
@@ -280,7 +343,6 @@
         const data = [
             { word: "Digital Portfolios", icon: "fas fa-briefcase text-blue-400" },
             { word: "Web Games", icon: "fas fa-gamepad text-green-400" },
-            // Changed icon here to fa-heart for visibility
             { word: "Wedding Websites", icon: "fas fa-heart text-pink-400" }, 
             { word: "Wish Links", icon: "fas fa-star text-yellow-400" },
             { word: "Utility Tools", icon: "fas fa-tools text-orange-400" }
@@ -387,8 +449,8 @@
             updateIcon(data[0].icon); // Set initial icon
             setTimeout(typeWriter, 500);
             
-            // Show the promo modal 1.5 seconds after page loads
-            setTimeout(showPromoModal, 1500); 
+            // REMOVED the automatic 1.5 second promo modal pop-up
+            // Now users will only see the popup if they click the beautiful ad banner!
         };
     </script>
 </body>
