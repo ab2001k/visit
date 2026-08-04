@@ -81,14 +81,16 @@
             transform: translateY(-8px) scale(1.02);
             border-color: rgba(59, 130, 246, 0.5);
         }
-        /* Icon Jump Fix - Removed rotation that caused clipping, added cubic bezier jump */
+        
+        /* Fixed Icon Animation - Simply gets a little bigger from its current spot */
         .project-card i {
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-origin: center;
+            transition: transform 0.3s ease;
+            transform-origin: left center;
         }
         .project-card:hover i {
-            transform: scale(1.35) translateY(-5px);
+            transform: scale(1.2);
         }
+
         /* Highlight text on hover */
         .project-card h3 {
             transition: color 0.3s ease;
@@ -363,7 +365,6 @@
            target="_blank"
            class="group flex items-center gap-3 bg-gray-900/95 backdrop-blur-md px-2 py-2 pr-4 md:px-3 md:py-3 md:pr-5 rounded-full border border-gray-700 shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all duration-300 hover:scale-105 hover:border-green-500 hover:bg-gray-800 cursor-pointer">
             
-            <!-- Combined the text and icon beautifully. Text hides ONLY on extremely tiny screens (< 360px) but shows generally on mobile -->
             <div class="relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-green-500 rounded-full text-xl md:text-2xl transition-colors group-hover:bg-green-400">
                 <span class="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75 group-hover:animate-none"></span>
                 <i class="fab fa-whatsapp relative z-10 text-white"></i>
@@ -414,7 +415,6 @@
 
         // --- TRACKING & CLOCK LOGIC (Visitor Card) ---
         function initTracker() {
-            // Clock & Date Logic
             const liveDay = document.getElementById('live-day');
             const liveDate = document.getElementById('live-date');
             const liveTime = document.getElementById('live-time');
@@ -438,14 +438,12 @@
                 liveTime.textContent = `${hours}:${mins}:${secs} ${ampm}`;
                 copyrightYear.textContent = now.getFullYear();
 
-                // Dynamic Greeting based on time
                 const greetingElement = document.getElementById('greeting-text');
                 let timeGreeting = "Good Evening";
                 let currHour = now.getHours();
                 if (currHour < 12) timeGreeting = "Good Morning";
                 else if (currHour < 17) timeGreeting = "Good Afternoon";
                 
-                // Only update the initial part, keeping the name span intact
                 if(!greetingElement.dataset.greeted) {
                     greetingElement.childNodes[0].textContent = `${timeGreeting}, `;
                     greetingElement.dataset.greeted = "true";
@@ -454,7 +452,6 @@
             setInterval(updateTime, 1000);
             updateTime();
 
-            // OS/Platform Detection
             let os = "Unknown Device";
             const ua = navigator.userAgent;
             if (ua.indexOf("Win") !== -1) os = "Windows OS";
@@ -464,7 +461,6 @@
             if (/iPhone|iPad|iPod/.test(ua)) os = "Apple iOS";
             document.getElementById('visitor-platform').textContent = os;
 
-            // Cookie / Local Storage User Tracker
             const nameSpan = document.getElementById('visitor-name');
             const STORAGE_KEY = 'abhik_portfolio_visitor_name';
             let storedName = localStorage.getItem(STORAGE_KEY);
@@ -482,7 +478,6 @@
                 }
             });
         }
-
 
         // --- SCROLL REVEAL ANIMATIONS ---
         const revealElements = document.querySelectorAll('.reveal');
@@ -585,7 +580,6 @@
             updateIcon(data[0].icon); 
             setTimeout(typeWriter, 500);
             
-            // Check immediately visible reveals
             revealElements.forEach(el => {
                 const rect = el.getBoundingClientRect();
                 if(rect.top < window.innerHeight) {
