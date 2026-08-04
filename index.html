@@ -81,11 +81,20 @@
             transform: translateY(-8px) scale(1.02);
             border-color: rgba(59, 130, 246, 0.5);
         }
+        /* Icon Jump Fix - Removed rotation that caused clipping, added cubic bezier jump */
         .project-card i {
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center;
         }
         .project-card:hover i {
-            transform: scale(1.2) rotate(-5deg);
+            transform: scale(1.35) translateY(-5px);
+        }
+        /* Highlight text on hover */
+        .project-card h3 {
+            transition: color 0.3s ease;
+        }
+        .project-card:hover h3 {
+            color: #60a5fa; /* Text Blue Highlight */
         }
 
         /* Dynamic Icon Transition */
@@ -129,23 +138,23 @@
     <!-- Marquee -->
     <div class="marquee-container w-full py-2 text-white font-bold tracking-widest shadow-lg shadow-blue-500/20 fixed top-0 z-50 backdrop-blur-md">
         <div class="marquee-content text-sm md:text-base uppercase">
-            Welcome to Aparajita Studio Digital Services • Abhik Dutta • Designer & Web Developer • Digital Portfolios • Web Games • Custom Tools
+            Welcome to Abhik Dutta Digital Portfolio • Designer & Web Developer • Digital Portfolios • Web Games • Custom Tools
         </div>
     </div>
 
     <!-- Header Section -->
-    <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 reveal">
+    <header class="min-h-[85vh] flex flex-col justify-center items-center text-center px-4 pt-24 reveal">
         <div class="bg-gray-900/60 backdrop-blur-xl border border-gray-700/50 p-8 md:p-16 rounded-3xl shadow-2xl max-w-3xl mx-auto w-full relative overflow-hidden">
             <!-- Subtle inner glow -->
             <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl"></div>
             <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl"></div>
             
-            <div class="w-24 h-24 mx-auto bg-gray-950 border border-gray-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(59,130,246,0.3)] relative z-10">
+            <div class="w-24 h-24 mx-auto bg-gray-950 border border-gray-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(59,130,246,0.3)] relative z-10 cursor-pointer hover:rotate-180 transition-transform duration-700">
                 <i id="dynamic-icon" class="fas fa-magic text-4xl text-blue-400"></i>
             </div>
 
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight text-white relative z-10">
-                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 animate-pulse">Abhik</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight text-white relative z-10 select-none cursor-default">
+                Hi, I'm <span id="hero-name" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 animate-pulse transition-all duration-300">Abhik</span>
             </h1>
             
             <div class="text-xl md:text-3xl font-light text-gray-300 mb-6 h-10 relative z-10">
@@ -153,7 +162,7 @@
             </div>
 
             <p class="text-gray-400 mb-8 text-md md:text-lg relative z-10 max-w-xl mx-auto">
-                Delivering professional digital solutions for Aparajita Studio. Custom web applications, interactive media, and tailored business software.
+                Delivering professional digital solutions. Creating custom web applications, interactive media, and tailored business software for the modern web.
             </p>
 
             <div class="flex flex-wrap justify-center gap-4 relative z-10">
@@ -167,8 +176,30 @@
         </div>
     </header>
 
+    <!-- Tracked Visitor Status Card -->
+    <section class="max-w-4xl mx-auto px-4 mt-8 mb-12 relative z-10 reveal">
+        <div class="bg-gray-900/40 backdrop-blur-md p-6 rounded-2xl border border-gray-700/50 shadow-[0_0_20px_rgba(0,0,0,0.5)] flex flex-col md:flex-row justify-between items-center gap-4 group">
+            <div class="text-center md:text-left">
+                <p class="text-blue-400 font-mono text-xs mb-1 uppercase tracking-widest flex items-center justify-center md:justify-start gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Live Connection
+                </p>
+                <h3 class="text-xl md:text-2xl text-white font-semibold mb-1" id="greeting-text">
+                    Welcome back, <span id="visitor-name" class="text-purple-400 cursor-pointer border-b border-dashed border-purple-500 hover:text-purple-300 transition-colors" title="Click to edit your name">Traveler</span>! 👋
+                </h3>
+                <p class="text-gray-400 text-sm">
+                    Accessing from: <span id="visitor-platform" class="text-gray-200 font-mono font-bold bg-gray-800 px-2 py-0.5 rounded">Detecting...</span>
+                </p>
+            </div>
+            <div class="text-center md:text-right bg-black/30 p-3 rounded-xl border border-gray-800 w-full md:w-auto">
+                <p id="live-day" class="text-sm text-gray-300 font-bold uppercase"></p>
+                <p id="live-date" class="text-blue-300 text-sm font-mono"></p>
+                <p id="live-time" class="text-xl text-white font-mono tracking-wider"></p>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
-    <section id="about" class="py-24 px-4 md:px-8 max-w-4xl mx-auto relative z-10">
+    <section id="about" class="py-12 px-4 md:px-8 max-w-4xl mx-auto relative z-10">
         <div class="reveal">
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 border-l-4 border-blue-500 pl-4 uppercase tracking-wider flex items-center gap-3">
                 <i class="fas fa-user-astronaut text-blue-400"></i> Professional Overview
@@ -196,7 +227,6 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- Existing Projects -->
             <a href="https://ab2001k.github.io/Aparajita" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-1">
                 <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <i class="fas fa-print text-3xl text-blue-400 mb-4 block relative z-10"></i>
@@ -232,10 +262,9 @@
                 <p class="text-gray-400 text-sm relative z-10">Resource management portal compiled for Assam state examination preparation.</p>
             </a>
 
-            <!-- NEW PROJECT 1: Resume Maker -->
             <a href="#" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-3 border-cyan-700/50">
                 <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="absolute top-4 right-4 bg-cyan-900/50 text-cyan-300 text-xs px-2 py-1 rounded border border-cyan-700/50">NEW</div>
+                <div class="absolute top-4 right-4 bg-cyan-900/50 text-cyan-300 text-xs px-2 py-1 rounded border border-cyan-700/50 z-20">NEW</div>
                 <i class="fas fa-file-invoice text-3xl text-cyan-400 mb-4 block relative z-10"></i>
                 <h3 class="text-xl font-bold mb-2 text-white relative z-10">Resume / Bio-Data Maker</h3>
                 <p class="text-gray-400 text-sm relative z-10">Custom utility for instantly generating professionally formatted resumes and bio-data.</p>
@@ -269,10 +298,9 @@
                 <p class="text-gray-400 text-sm relative z-10">Complex graphical browser game. <span class="text-blue-400 font-semibold">(Desktop Recommended)</span></p>
             </button>
 
-            <!-- NEW PROJECT 2: Star Shooter -->
             <button onclick="confirmGame('#')" class="project-card text-left rounded-xl p-6 block w-full relative overflow-hidden group reveal stagger-2 border-yellow-700/50">
                 <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="absolute top-4 right-4 bg-yellow-900/50 text-yellow-300 text-xs px-2 py-1 rounded border border-yellow-700/50">NEW</div>
+                <div class="absolute top-4 right-4 bg-yellow-900/50 text-yellow-300 text-xs px-2 py-1 rounded border border-yellow-700/50 z-20">NEW</div>
                 <i class="fas fa-space-shuttle text-3xl text-yellow-400 mb-4 block relative z-10"></i>
                 <h3 class="text-xl font-bold mb-2 text-white relative z-10">Star Shooter</h3>
                 <p class="text-gray-400 text-sm relative z-10">Action-packed browser-based space shooter game. <span class="text-blue-400 font-semibold">(Desktop Recommended)</span></p>
@@ -310,7 +338,7 @@
             </div>
 
             <p class="text-gray-600 text-xs tracking-wider uppercase">
-                &copy; 2026 Abhik Dutta (ab2001k). All rights reserved.<br>
+                &copy; <span id="copyright-year">2026</span> Abhik Dutta (ab2001k). All rights reserved.<br>
                 Unauthorized duplication of this portfolio's code is strictly prohibited.
             </p>
         </div>
@@ -329,30 +357,139 @@
         </div>
     </div>
 
-    <!-- Floating WhatsApp Button -->
-    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-4">
-        <div class="text-white font-bold text-sm bg-gray-900/90 backdrop-blur-sm px-4 py-2 rounded-xl border border-gray-700 shadow-xl hidden sm:flex items-center gap-2 transform transition-transform hover:scale-105">
-            Talk to designer here <i class="fas fa-arrow-right text-green-400 animate-pulse"></i>
-        </div>
-        
+    <!-- IMPROVED Floating WhatsApp Button (Mobile & PC Friendly) -->
+    <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50">
         <a href="https://wa.me/918822967314?text=Hello%20Abhik,%20I%20am%20inquiring%20about%20your%20digital%20development%20services." 
            target="_blank"
-           class="relative flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full text-3xl transition-all duration-300 hover:scale-110 hover:bg-green-400 shadow-[0_0_20px_rgba(34,197,94,0.4)] z-10 group">
-            <span class="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75 group-hover:animate-none"></span>
-            <i class="fab fa-whatsapp relative z-10"></i>
+           class="group flex items-center gap-3 bg-gray-900/95 backdrop-blur-md px-2 py-2 pr-4 md:px-3 md:py-3 md:pr-5 rounded-full border border-gray-700 shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all duration-300 hover:scale-105 hover:border-green-500 hover:bg-gray-800 cursor-pointer">
+            
+            <!-- Combined the text and icon beautifully. Text hides ONLY on extremely tiny screens (< 360px) but shows generally on mobile -->
+            <div class="relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-green-500 rounded-full text-xl md:text-2xl transition-colors group-hover:bg-green-400">
+                <span class="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75 group-hover:animate-none"></span>
+                <i class="fab fa-whatsapp relative z-10 text-white"></i>
+            </div>
+            
+            <span class="text-sm md:text-base font-bold text-gray-200 group-hover:text-white transition-colors flex items-center gap-2">
+                Talk to designer <i class="fas fa-arrow-right text-green-400 animate-pulse text-xs md:text-sm"></i>
+            </span>
         </a>
     </div>
 
     <script>
+        // --- EASTER EGGS ---
+        // 1. Console Egg
+        console.log("%cHello Curious Developer! 🕵️‍♂️", "color: #60a5fa; font-size: 20px; font-weight: bold; padding: 5px 0;");
+        console.log("%cLooks like you found my first easter egg. Type %cmatrixMode()%c in this console to see something cool.", "color: #ccc;", "color: #0f0; font-family: monospace; font-weight: bold;", "color: #ccc;");
+        
+        window.matrixMode = function() {
+            document.body.style.background = "#000";
+            document.querySelectorAll('*').forEach(el => {
+                if(el.style) el.style.color = "#0f0";
+                if(el.style) el.style.borderColor = "#004400";
+                if(el.style) el.style.boxShadow = "none";
+            });
+            document.querySelector('.bg-grid').style.backgroundImage = 'linear-gradient(to right, rgba(0, 255, 0, 0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 255, 0, 0.15) 1px, transparent 1px)';
+            return "Matrix mode activated. Follow the white rabbit 🐇.";
+        };
+
+        // 2. Clickable Egg on Hero Name
+        let clickCount = 0;
+        const heroName = document.getElementById('hero-name');
+        heroName.addEventListener('click', (e) => {
+            clickCount++;
+            if(clickCount === 5) {
+                e.target.textContent = "Batman 🦇";
+                e.target.classList.remove('from-blue-400', 'via-indigo-400', 'to-purple-400');
+                e.target.classList.add('from-yellow-400', 'via-gray-400', 'to-yellow-600');
+                
+                // Revert after 4 seconds
+                setTimeout(() => {
+                    e.target.textContent = "Abhik";
+                    e.target.classList.add('from-blue-400', 'via-indigo-400', 'to-purple-400');
+                    e.target.classList.remove('from-yellow-400', 'via-gray-400', 'to-yellow-600');
+                    clickCount = 0;
+                }, 4000);
+            }
+        });
+
+        // --- TRACKING & CLOCK LOGIC (Visitor Card) ---
+        function initTracker() {
+            // Clock & Date Logic
+            const liveDay = document.getElementById('live-day');
+            const liveDate = document.getElementById('live-date');
+            const liveTime = document.getElementById('live-time');
+            const copyrightYear = document.getElementById('copyright-year');
+
+            function updateTime() {
+                const now = new Date();
+                
+                const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                
+                liveDay.textContent = days[now.getDay()];
+                liveDate.textContent = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+                
+                let hours = now.getHours();
+                let mins = now.getMinutes().toString().padStart(2, '0');
+                let secs = now.getSeconds().toString().padStart(2, '0');
+                let ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12 || 12; // 12-hour format
+                
+                liveTime.textContent = `${hours}:${mins}:${secs} ${ampm}`;
+                copyrightYear.textContent = now.getFullYear();
+
+                // Dynamic Greeting based on time
+                const greetingElement = document.getElementById('greeting-text');
+                let timeGreeting = "Good Evening";
+                let currHour = now.getHours();
+                if (currHour < 12) timeGreeting = "Good Morning";
+                else if (currHour < 17) timeGreeting = "Good Afternoon";
+                
+                // Only update the initial part, keeping the name span intact
+                if(!greetingElement.dataset.greeted) {
+                    greetingElement.childNodes[0].textContent = `${timeGreeting}, `;
+                    greetingElement.dataset.greeted = "true";
+                }
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            // OS/Platform Detection
+            let os = "Unknown Device";
+            const ua = navigator.userAgent;
+            if (ua.indexOf("Win") !== -1) os = "Windows OS";
+            if (ua.indexOf("Mac") !== -1) os = "Apple Mac";
+            if (ua.indexOf("Linux") !== -1) os = "Linux Machine";
+            if (/Android/.test(ua)) os = "Android Mobile";
+            if (/iPhone|iPad|iPod/.test(ua)) os = "Apple iOS";
+            document.getElementById('visitor-platform').textContent = os;
+
+            // Cookie / Local Storage User Tracker
+            const nameSpan = document.getElementById('visitor-name');
+            const STORAGE_KEY = 'abhik_portfolio_visitor_name';
+            let storedName = localStorage.getItem(STORAGE_KEY);
+            
+            if(storedName) {
+                nameSpan.textContent = storedName;
+            }
+
+            nameSpan.addEventListener('click', () => {
+                let newName = prompt("Identity Update Protocol\n\nWhat should I call you?");
+                if(newName && newName.trim() !== "") {
+                    let cleanedName = newName.trim();
+                    localStorage.setItem(STORAGE_KEY, cleanedName);
+                    nameSpan.textContent = cleanedName;
+                }
+            });
+        }
+
+
         // --- SCROLL REVEAL ANIMATIONS ---
         const revealElements = document.querySelectorAll('.reveal');
-        
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    // Optional: stop observing once revealed
-                    // revealObserver.unobserve(entry.target);
                 }
             });
         }, { 
@@ -413,10 +550,8 @@
                 if (i >= data.length) i = 0;
                 
                 updateIcon(data[i].icon);
-                
                 typeSpeed = 500;
             }
-
             setTimeout(typeWriter, typeSpeed);
         }
 
@@ -428,7 +563,6 @@
         function confirmGame(url) {
             proceedBtn.href = url;
             modal.classList.remove('hidden');
-            // Tiny delay to allow display block to apply before animating opacity
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modalContent.classList.remove('scale-95');
@@ -445,11 +579,13 @@
             }, 300); 
         }
 
+        // --- INIT ---
         window.onload = () => {
+            initTracker();
             updateIcon(data[0].icon); 
             setTimeout(typeWriter, 500);
             
-            // Add 'active' to elements already in view on load
+            // Check immediately visible reveals
             revealElements.forEach(el => {
                 const rect = el.getBoundingClientRect();
                 if(rect.top < window.innerHeight) {
