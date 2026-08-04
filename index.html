@@ -11,8 +11,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Import Bengali Font for the Poster */
-        @import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap');
+        /* Modern Tech Grid Background */
+        .bg-grid {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
 
         /* Wish-Site Style Marquee */
         .marquee-container {
@@ -35,17 +45,21 @@
             100% { background-position: 200% center; }
         }
 
-        /* Wish-Site Style Floating Orbs */
+        /* Upgraded Floating Orbs */
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(40px);
+            filter: blur(60px);
             z-index: -1;
-            animation: float 6s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite, pulse-glow 4s alternate infinite;
         }
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+        @keyframes pulse-glow {
+            0% { opacity: 0.5; }
+            100% { opacity: 0.8; }
         }
 
         /* Blinking Cursor for Typewriter */
@@ -55,10 +69,23 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Card Hover */
+        /* Advanced Card Hover states */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 85, 99, 0.4);
+        }
         .project-card:hover {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.5);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        .project-card i {
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover i {
+            transform: scale(1.2) rotate(-5deg);
         }
 
         /* Dynamic Icon Transition */
@@ -67,245 +94,217 @@
         }
         .icon-fade-out {
             opacity: 0;
-            transform: scale(0.8);
+            transform: scale(0.5) rotate(-45deg);
         }
         .icon-fade-in {
             opacity: 1;
-            transform: scale(1);
-        }
-        
-        /* Utility for Bengali Font */
-        .font-bengali {
-            font-family: 'Tiro Bangla', serif;
+            transform: scale(1) rotate(0);
         }
 
-        /* NEW ANIMATIONS FOR ADVERTISEMENT SECTION */
-        
-        /* 1. TV Commercial Word Pop */
-        @keyframes popWord {
-            0% { opacity: 0; transform: scale(0.3) translateY(30px); }
-            50% { opacity: 1; transform: scale(1.1) translateY(-5px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .pop-word {
-            display: inline-block;
+        /* Scroll Reveal Animations */
+        .reveal {
             opacity: 0;
-            animation: popWord 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-
-        /* 2. Gentle Continuous Shake for Checkboxes */
-        @keyframes gentleJiggle {
-            0%, 100% { transform: rotate(0deg) translateX(0); }
-            25% { transform: rotate(-1deg) translateX(-2px); }
-            75% { transform: rotate(1deg) translateX(2px); }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .jiggle-box {
-            animation: gentleJiggle 3s infinite ease-in-out;
-        }
+        
+        /* Staggered transition delay for grid items */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans antialiased relative overflow-x-hidden">
+<body class="bg-[#0b1120] text-gray-100 font-sans antialiased relative overflow-x-hidden selection:bg-blue-500 selection:text-white">
+    
+    <!-- Background Elements -->
+    <div class="bg-grid"></div>
+    <div class="orb bg-blue-600/30 w-72 h-72 top-20 left-10"></div>
+    <div class="orb bg-purple-600/30 w-[400px] h-[400px] bottom-40 right-10" style="animation-delay: 2s;"></div>
+    <div class="orb bg-cyan-600/20 w-64 h-64 top-[50%] left-[20%]" style="animation-delay: 4s;"></div>
 
-    <div class="marquee-container w-full py-2 text-white font-bold tracking-widest shadow-lg shadow-blue-500/20 fixed top-0 z-50">
+    <!-- Marquee -->
+    <div class="marquee-container w-full py-2 text-white font-bold tracking-widest shadow-lg shadow-blue-500/20 fixed top-0 z-50 backdrop-blur-md">
         <div class="marquee-content text-sm md:text-base uppercase">
             Welcome to Aparajita Studio Digital Services • Abhik Dutta • Designer & Web Developer • Digital Portfolios • Web Games • Custom Tools
         </div>
     </div>
 
-    <div class="orb bg-blue-600/20 w-64 h-64 top-20 left-10"></div>
-    <div class="orb bg-purple-600/20 w-80 h-80 bottom-40 right-10" style="animation-delay: 2s;"></div>
-
-    <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-16">
-        <div class="bg-gray-800/80 backdrop-blur-md border border-gray-700 p-8 md:p-16 rounded-3xl shadow-2xl max-w-3xl mx-auto w-full">
+    <!-- Header Section -->
+    <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 reveal">
+        <div class="bg-gray-900/60 backdrop-blur-xl border border-gray-700/50 p-8 md:p-16 rounded-3xl shadow-2xl max-w-3xl mx-auto w-full relative overflow-hidden">
+            <!-- Subtle inner glow -->
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl"></div>
             
-            <div class="w-24 h-24 mx-auto bg-gray-900 border border-gray-700 rounded-full flex items-center justify-center mb-6 shadow-lg">
+            <div class="w-24 h-24 mx-auto bg-gray-950 border border-gray-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(59,130,246,0.3)] relative z-10">
                 <i id="dynamic-icon" class="fas fa-magic text-4xl text-blue-400"></i>
             </div>
 
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight text-white">
-                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Abhik</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight text-white relative z-10">
+                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 animate-pulse">Abhik</span>
             </h1>
             
-            <div class="text-xl md:text-3xl font-light text-gray-300 mb-6 h-10">
+            <div class="text-xl md:text-3xl font-light text-gray-300 mb-6 h-10 relative z-10">
                 I develop <span id="typewriter" class="font-bold text-white cursor"></span>
             </div>
 
-            <p class="text-gray-400 mb-8 text-md md:text-lg">
+            <p class="text-gray-400 mb-8 text-md md:text-lg relative z-10 max-w-xl mx-auto">
                 Delivering professional digital solutions for Aparajita Studio. Custom web applications, interactive media, and tailored business software.
             </p>
 
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#portfolio" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all border border-blue-500 shadow-lg shadow-blue-500/20">
-                    View Portfolio <i class="fas fa-arrow-down ml-2"></i>
+            <div class="flex flex-wrap justify-center gap-4 relative z-10">
+                <a href="#portfolio" class="group bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 border border-blue-500 shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:shadow-[0_0_25px_rgba(37,99,235,0.6)]">
+                    View Portfolio <i class="fas fa-arrow-down ml-2 group-hover:translate-y-1 transition-transform"></i>
                 </a>
-                <a href="#about" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full transition-all border border-gray-600">
+                <a href="#about" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 border border-gray-600 hover:border-gray-500">
                     About the Developer
                 </a>
             </div>
         </div>
     </header>
 
-    <section id="advertisement" class="py-12 px-4 max-w-6xl mx-auto relative z-10 w-full cursor-pointer group" onclick="showPromoModal()">
-        <div class="relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-[0_0_40px_rgba(255,167,81,0.4)] bg-gradient-to-br from-[#ffe259] to-[#ffa751] text-gray-900 flex flex-col md:flex-row items-center p-6 md:p-10 gap-8">
-            
-            <div class="absolute top-0 right-0 bg-black/80 backdrop-blur text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-widest z-20">
-                Sponsored Promotion
-            </div>
-
-            <div class="flex-1 text-center md:text-left pt-6 md:pt-0">
-                <h2 class="text-3xl md:text-5xl font-black text-[#d11a2a] uppercase leading-tight mb-2 drop-shadow-md flex flex-wrap justify-center md:justify-start gap-2" style="text-shadow: 2px 2px 0px #fff;">
-                    <span class="pop-word" style="animation-delay: 0.2s">Apply</span>
-                    <span class="pop-word" style="animation-delay: 0.5s">For</span>
-                    <span class="pop-word" style="animation-delay: 0.8s">Meghalaya</span>
-                    <span class="pop-word" style="animation-delay: 1.1s">Migrant</span>
-                    <span class="pop-word text-[#004085]" style="animation-delay: 1.5s; text-shadow: 2px 2px 0px #fff;">Certificate!</span>
-                </h2>
-                <p class="font-bengali text-xl md:text-3xl font-bold text-[#004085] mb-6 drop-shadow-sm pop-word" style="animation-delay: 2.0s; text-shadow: 1px 1px 0px #fff;">
-                    এখানে মেঘালয় মাইগ্রেন্ট সার্টিফিকেটের জন্য আবেদন করুন!
+    <!-- About Section -->
+    <section id="about" class="py-24 px-4 md:px-8 max-w-4xl mx-auto relative z-10">
+        <div class="reveal">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 border-l-4 border-blue-500 pl-4 uppercase tracking-wider flex items-center gap-3">
+                <i class="fas fa-user-astronaut text-blue-400"></i> Professional Overview
+            </h2>
+            <div class="bg-gray-800/40 backdrop-blur-md p-8 rounded-2xl border border-gray-700 text-gray-300 leading-relaxed text-lg shadow-xl relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <p class="mb-6 relative z-10">
+                    I am Abhik Dutta, a digital designer and software developer. This portfolio serves as a comprehensive repository of my web applications, interactive digital media, and business-oriented utility tools. My work focuses on creating responsive, efficient, and user-centric digital experiences.
                 </p>
-
-                <div class="space-y-3 mb-8 text-left max-w-2xl mx-auto md:mx-0">
-                    <div class="jiggle-box flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm" style="animation-delay: 0s;">
-                        <span class="text-2xl mt-1">✅</span>
-                        <div>
-                            <span class="font-bold text-lg md:text-xl text-gray-900">Hassle-free entry into Meghalaya for work</span><br>
-                            <span class="font-bengali text-base md:text-lg text-gray-700">কাজের বা ভ্রমণের জন্য মেঘালয়ে সহজে প্রবেশ করুন</span>
-                        </div>
-                    </div>
-                    <div class="jiggle-box flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm" style="animation-delay: 0.5s;">
-                        <span class="text-2xl mt-1">✅</span>
-                        <div>
-                            <span class="font-bold text-lg md:text-xl text-gray-900">Avoid delays & fines at border checkpoints</span><br>
-                            <span class="font-bengali text-base md:text-lg text-gray-700">বর্ডার চেকপয়েন্টে বিলম্ব এবং জরিমানা এড়ান</span>
-                        </div>
-                    </div>
-                    <div class="jiggle-box flex items-start gap-3 bg-white/80 p-3 md:p-4 rounded-xl border-l-8 border-[#28a745] shadow-sm" style="animation-delay: 1s;">
-                        <span class="text-2xl mt-1">✅</span>
-                        <div>
-                            <span class="font-bold text-lg md:text-xl text-gray-900">Fast & easy online registration process</span><br>
-                            <span class="font-bengali text-base md:text-lg text-gray-700">খুব দ্রুত এবং সহজ অনলাইন রেজিস্ট্রেশন প্রক্রিয়া</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-900 text-white px-6 py-4 rounded-xl inline-block w-full md:w-auto shadow-lg text-center md:text-left pop-word" style="animation-delay: 2.2s;">
-                    <div class="text-xl md:text-2xl font-black text-[#ffd700] tracking-wide mb-1">APARAJITA STUDIO & OFFSET PRINTING</div>
-                    <a href="https://ab2001k.github.io/visit/" class="text-sm md:text-base font-bold text-blue-300 hover:text-white transition-colors">🌐 ab2001k.github.io/visit/</a>
-                </div>
+                <p class="mb-6 relative z-10">
+                    The projects featured herein are conceptualized and developed utilizing a combination of modern web technologies, core programming logic, and specialized frameworks. Furthermore, to optimize code architecture, generate visual assets, and accelerate the development lifecycle, I leverage advanced Artificial Intelligence (AI) models and machine learning tools alongside traditional hand-coding practices.
+                </p>
+                <p class="relative z-10 font-medium text-gray-200">
+                    My objective is to seamlessly integrate physical business operations with scalable digital infrastructure, providing clients with robust and modern technological solutions.
+                </p>
             </div>
-
-            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-2xl flex flex-col items-center w-full md:w-auto md:min-w-[320px] transform transition-transform group-hover:scale-105">
-                <div class="text-2xl md:text-3xl font-black text-[#d11a2a] mb-4 uppercase text-center w-full tracking-wider">Click or Scan</div>
-                <img src="frame.png" alt="Scan QR Code" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-6 transition-transform hover:scale-105 duration-300">
-                <div class="bg-[#25D366] text-[#111] text-2xl md:text-3xl font-black py-4 px-6 rounded-full w-full text-center shadow-[0_5px_15px_rgba(37,211,102,0.4)] transition-all duration-300 hover:bg-[#1fbf58] hover:shadow-[0_0_30px_rgba(37,211,102,1)] hover:scale-110 hover:text-white cursor-pointer">
-                    📞 +91 8638845069
-                </div>
-            </div>
-            
-        </div>
-    </section>
-    <section id="about" class="py-20 px-4 md:px-8 max-w-4xl mx-auto relative z-10 border-b border-gray-800">
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 border-l-4 border-blue-500 pl-4 uppercase tracking-wider">
-            Professional Overview
-        </h2>
-        <div class="bg-gray-800/50 p-8 rounded-xl border border-gray-700 text-gray-300 leading-relaxed text-lg">
-            <p class="mb-6">
-                I am Abhik Dutta, a digital designer and software developer. This portfolio serves as a comprehensive repository of my web applications, interactive digital media, and business-oriented utility tools. My work focuses on creating responsive, efficient, and user-centric digital experiences.
-            </p>
-            <p class="mb-6">
-                The projects featured herein are conceptualized and developed utilizing a combination of modern web technologies, core programming logic, and specialized frameworks. Furthermore, to optimize code architecture, generate visual assets, and accelerate the development lifecycle, I leverage advanced Artificial Intelligence (AI) models and machine learning tools alongside traditional hand-coding practices.
-            </p>
-            <p>
-                My objective is to seamlessly integrate physical business operations with scalable digital infrastructure, providing clients with robust and modern technological solutions.
-            </p>
         </div>
     </section>
 
+    <!-- Portfolio Section -->
     <section id="portfolio" class="py-20 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 border-l-4 border-purple-500 pl-4 uppercase tracking-wider">
-            Digital Projects Directory
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 border-l-4 border-purple-500 pl-4 uppercase tracking-wider reveal flex items-center gap-3">
+            <i class="fas fa-layer-group text-purple-400"></i> Digital Projects Directory
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <a href="https://ab2001k.github.io/Aparajita" target="_blank" class="project-card bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700">
-                <i class="fas fa-print text-3xl text-blue-400 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">Aparajita Studio CMS</h3>
-                <p class="text-gray-400 text-sm">Digital storefront interface for offset printing and custom design services.</p>
+            <!-- Existing Projects -->
+            <a href="https://ab2001k.github.io/Aparajita" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-print text-3xl text-blue-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Aparajita Studio CMS</h3>
+                <p class="text-gray-400 text-sm relative z-10">Digital storefront interface for offset printing and custom design services.</p>
             </a>
 
-            <a href="https://ab2001k.github.io/wedding-countdown" target="_blank" class="project-card bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700">
-                <i class="fas fa-heart text-3xl text-pink-400 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">Event Countdown Systems</h3>
-                <p class="text-gray-400 text-sm">Responsive countdown web applications bundled with physical event invitations.</p>
+            <a href="https://ab2001k.github.io/wedding-countdown" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-heart text-3xl text-pink-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Event Countdown Systems</h3>
+                <p class="text-gray-400 text-sm relative z-10">Responsive countdown web applications bundled with physical event invitations.</p>
             </a>
 
-            <a href="https://ab2001k.github.io/Passport_photo" target="_blank" class="project-card bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700">
-                <i class="fas fa-id-badge text-3xl text-indigo-400 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">Automated Photo Maker</h3>
-                <p class="text-gray-400 text-sm">Utility tool engineered for precise passport photo scaling and print alignment.</p>
+            <a href="https://ab2001k.github.io/Passport_photo" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-3">
+                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-id-badge text-3xl text-indigo-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Automated Photo Maker</h3>
+                <p class="text-gray-400 text-sm relative z-10">Utility tool engineered for precise passport photo scaling and print alignment.</p>
             </a>
 
-            <a href="https://ab2001k.github.io/wish" target="_blank" class="project-card bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700">
-                <i class="fas fa-star text-3xl text-yellow-400 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">Digital Wish Protocol</h3>
-                <p class="text-gray-400 text-sm">Interactive, shareable greeting links optimized for high-volume network traffic.</p>
+            <a href="https://ab2001k.github.io/wish" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-star text-3xl text-yellow-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Digital Wish Protocol</h3>
+                <p class="text-gray-400 text-sm relative z-10">Interactive, shareable greeting links optimized for high-volume network traffic.</p>
             </a>
 
-            <a href="https://ab2001k.github.io/adre-prep" target="_blank" class="project-card bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700">
-                <i class="fas fa-book-open text-3xl text-orange-400 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">ADRE Educational Portal</h3>
-                <p class="text-gray-400 text-sm">Resource management portal compiled for Assam state examination preparation.</p>
+            <a href="https://ab2001k.github.io/adre-prep" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-book-open text-3xl text-orange-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">ADRE Educational Portal</h3>
+                <p class="text-gray-400 text-sm relative z-10">Resource management portal compiled for Assam state examination preparation.</p>
             </a>
 
-            <a href="https://ab2001k.github.io/gf" target="_blank" class="project-card bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700">
-                <i class="fas fa-gift text-3xl text-red-500 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">Interactive Gift Module</h3>
-                <p class="text-gray-400 text-sm">Personalized web application designed for surprise virtual gifting.</p>
+            <!-- NEW PROJECT 1: Resume Maker -->
+            <a href="#" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-3 border-cyan-700/50">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute top-4 right-4 bg-cyan-900/50 text-cyan-300 text-xs px-2 py-1 rounded border border-cyan-700/50">NEW</div>
+                <i class="fas fa-file-invoice text-3xl text-cyan-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Resume / Bio-Data Maker</h3>
+                <p class="text-gray-400 text-sm relative z-10">Custom utility for instantly generating professionally formatted resumes and bio-data.</p>
             </a>
 
-            <button onclick="confirmGame('https://ab2001k.github.io/game')" class="project-card text-left bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700 w-full">
-                <i class="fas fa-gamepad text-3xl text-green-400 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">Web Game Project 1</h3>
-                <p class="text-gray-400 text-sm">Browser-based entertainment module. <span class="text-blue-400 font-semibold">(Desktop Recommended)</span></p>
+            <a href="https://ab2001k.github.io/gf" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-red-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-gift text-3xl text-red-500 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Interactive Gift Module</h3>
+                <p class="text-gray-400 text-sm relative z-10">Personalized web application designed for surprise virtual gifting.</p>
+            </a>
+            
+            <a href="https://ab2001k.github.io/chor-police" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-user-secret text-3xl text-purple-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Chor Police Simulator</h3>
+                <p class="text-gray-400 text-sm relative z-10">Multiplayer logic and card game implementation via web protocols.</p>
+            </a>
+
+            <button onclick="confirmGame('https://ab2001k.github.io/game')" class="project-card text-left rounded-xl p-6 block w-full relative overflow-hidden group reveal stagger-3">
+                <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-gamepad text-3xl text-green-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Web Game Project 1</h3>
+                <p class="text-gray-400 text-sm relative z-10">Browser-based entertainment module. <span class="text-blue-400 font-semibold">(Desktop Recommended)</span></p>
             </button>
 
-            <button onclick="confirmGame('https://ab2001k.github.io/game2')" class="project-card text-left bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700 w-full">
-                <i class="fas fa-desktop text-3xl text-teal-400 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">Advanced Web Game 2</h3>
-                <p class="text-gray-400 text-sm">Complex graphical browser game. <span class="text-blue-400 font-semibold">(Desktop Recommended)</span></p>
+            <button onclick="confirmGame('https://ab2001k.github.io/game2')" class="project-card text-left rounded-xl p-6 block w-full relative overflow-hidden group reveal stagger-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <i class="fas fa-desktop text-3xl text-teal-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Advanced Web Game 2</h3>
+                <p class="text-gray-400 text-sm relative z-10">Complex graphical browser game. <span class="text-blue-400 font-semibold">(Desktop Recommended)</span></p>
             </button>
 
-            <a href="https://ab2001k.github.io/chor-police" target="_blank" class="project-card bg-gray-800 rounded-xl p-6 transition-all duration-300 block border border-gray-700">
-                <i class="fas fa-user-secret text-3xl text-purple-400 mb-4 block"></i>
-                <h3 class="text-xl font-bold mb-2 text-white">Chor Police Simulator</h3>
-                <p class="text-gray-400 text-sm">Multiplayer logic and card game implementation via web protocols.</p>
-            </a>
+            <!-- NEW PROJECT 2: Star Shooter -->
+            <button onclick="confirmGame('#')" class="project-card text-left rounded-xl p-6 block w-full relative overflow-hidden group reveal stagger-2 border-yellow-700/50">
+                <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute top-4 right-4 bg-yellow-900/50 text-yellow-300 text-xs px-2 py-1 rounded border border-yellow-700/50">NEW</div>
+                <i class="fas fa-space-shuttle text-3xl text-yellow-400 mb-4 block relative z-10"></i>
+                <h3 class="text-xl font-bold mb-2 text-white relative z-10">Star Shooter</h3>
+                <p class="text-gray-400 text-sm relative z-10">Action-packed browser-based space shooter game. <span class="text-blue-400 font-semibold">(Desktop Recommended)</span></p>
+            </button>
 
         </div>
     </section>
 
-    <footer class="bg-gray-950 py-16 border-t border-gray-800 pb-28">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h3 class="text-lg font-bold text-white mb-8 uppercase tracking-widest">Connect & Follow</h3>
+    <!-- Footer -->
+    <footer class="bg-[#050810] py-16 border-t border-gray-800 pb-28 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 text-center reveal">
+            <h3 class="text-lg font-bold text-white mb-8 uppercase tracking-widest flex justify-center items-center gap-2">
+                <i class="fas fa-link text-gray-500"></i> Connect & Follow
+            </h3>
             
-            <div class="mb-8">
-                <a href="tel:+918822967314" class="inline-flex items-center gap-3 text-green-400 hover:text-green-300 transition-colors text-2xl font-bold bg-gray-900 border border-gray-800 py-3 px-6 rounded-full shadow-lg hover:shadow-green-500/20" title="Call Designer Directly">
-                    <i class="fas fa-phone-alt"></i> +91 88229 67314
+            <div class="mb-8 hover:scale-105 transition-transform inline-block">
+                <a href="tel:+918822967314" class="inline-flex items-center gap-3 text-green-400 hover:text-green-300 transition-colors text-2xl font-bold bg-gray-900/80 border border-gray-700 py-3 px-6 rounded-full shadow-[0_0_15px_rgba(74,222,128,0.2)] hover:shadow-[0_0_25px_rgba(74,222,128,0.4)] backdrop-blur-sm" title="Call Designer Directly">
+                    <i class="fas fa-phone-alt animate-pulse"></i> +91 88229 67314
                 </a>
             </div>
             
             <div class="flex justify-center gap-6 mb-8">
-                <a href="https://facebook.com/ab2001k" target="_blank" class="text-gray-400 hover:text-blue-500 transition-colors text-2xl" title="Facebook">
+                <a href="https://facebook.com/ab2001k" target="_blank" class="text-gray-400 hover:text-blue-500 hover:-translate-y-1 transition-all text-3xl" title="Facebook">
                     <i class="fab fa-facebook"></i>
                 </a>
-                <a href="https://instagram.com/ab2001k" target="_blank" class="text-gray-400 hover:text-pink-500 transition-colors text-2xl" title="Instagram">
+                <a href="https://instagram.com/ab2001k" target="_blank" class="text-gray-400 hover:text-pink-500 hover:-translate-y-1 transition-all text-3xl" title="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://github.com/ab2001k" target="_blank" class="text-gray-400 hover:text-white transition-colors text-2xl" title="GitHub">
+                <a href="https://github.com/ab2001k" target="_blank" class="text-gray-400 hover:text-white hover:-translate-y-1 transition-all text-3xl" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="mailto:abhikdutta639@gmail.com" class="text-gray-400 hover:text-green-400 transition-colors text-2xl" title="Email">
+                <a href="mailto:abhikdutta639@gmail.com" class="text-gray-400 hover:text-green-400 hover:-translate-y-1 transition-all text-3xl" title="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
             </div>
@@ -317,62 +316,58 @@
         </div>
     </footer>
 
-    <div id="gameModal" class="fixed inset-0 bg-black/80 hidden z-[100] flex items-center justify-center backdrop-blur-sm opacity-0 transition-opacity duration-300">
-        <div class="bg-gray-900 p-8 rounded-xl max-w-sm w-full text-center border border-gray-700 shadow-2xl transform scale-95 transition-transform duration-300" id="gameModalContent">
-            <i class="fas fa-desktop text-5xl text-blue-500 mb-4"></i>
+    <!-- Game Modal -->
+    <div id="gameModal" class="fixed inset-0 bg-black/80 hidden z-[100] flex items-center justify-center backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <div class="bg-gray-900 p-8 rounded-2xl max-w-sm w-full text-center border border-gray-700 shadow-[0_0_40px_rgba(59,130,246,0.3)] transform scale-95 transition-transform duration-300" id="gameModalContent">
+            <i class="fas fa-desktop text-5xl text-blue-500 mb-4 animate-pulse"></i>
             <h3 class="text-2xl font-bold text-white mb-2">Desktop Optimized</h3>
             <p class="text-gray-400 text-sm mb-8 leading-relaxed">This specific application is highly optimized for PC and Laptop displays. Navigating via a mobile device may result in limited UI functionality.</p>
             <div class="flex flex-col gap-3">
-                <a id="proceedBtn" href="#" target="_blank" onclick="closeModal()" class="w-full py-3 rounded-md bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors inline-block text-center">Proceed Anyway</a>
-                <button onclick="closeModal()" class="w-full py-3 rounded-md text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 transition-colors">Cancel</button>
+                <a id="proceedBtn" href="#" target="_blank" onclick="closeModal()" class="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-lg hover:shadow-blue-500/30 inline-block text-center">Proceed Anyway</a>
+                <button onclick="closeModal()" class="w-full py-3 rounded-lg text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 transition-all hover:bg-gray-800">Cancel</button>
             </div>
         </div>
     </div>
 
-    <div id="promoModal" class="fixed inset-0 bg-black/80 hidden z-[110] flex items-center justify-center backdrop-blur-sm opacity-0 transition-opacity duration-300">
-        <div class="bg-gray-900 p-8 rounded-xl max-w-md w-full mx-4 text-center border border-gray-700 shadow-2xl transform scale-95 transition-transform duration-300 relative" id="promoModalContent">
-            
-            <button onclick="closePromoModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors text-3xl leading-none" title="Close">
-                &times;
-            </button>
-
-            <i class="fas fa-bullhorn text-4xl text-yellow-400 mb-4 animate-bounce"></i>
-            <h3 class="text-2xl font-bold text-white mb-2">Important Notice</h3>
-            <p class="text-gray-300 text-base mb-8 leading-relaxed">
-                Call to get <span class="text-blue-400 font-bold">Meghalaya Migrant Certificate</span> now and more works, call to enquire!
-            </p>
-
-            <div class="flex flex-col gap-4">
-                <a href="tel:+918638845069" class="flex items-center justify-center gap-3 w-full py-3 rounded-md bg-green-600 hover:bg-green-500 text-white font-bold transition-colors border border-green-500 shadow-lg shadow-green-500/20">
-                    <i class="fas fa-phone-alt"></i> Call +91 8638845069
-                </a>
-                <a href="tel:+918822967314" class="flex items-center justify-center gap-3 w-full py-3 rounded-md bg-blue-600 hover:bg-blue-500 text-white font-bold transition-colors border border-blue-500 shadow-lg shadow-blue-500/20">
-                    <i class="fas fa-phone-alt"></i> Call +91 8822967314
-                </a>
-            </div>
-        </div>
-    </div>
-
+    <!-- Floating WhatsApp Button -->
     <div class="fixed bottom-6 right-6 z-50 flex items-center gap-4">
-        <div class="text-white font-bold text-sm bg-gray-800 px-4 py-2 rounded-lg border border-gray-600 shadow-xl animate-bounce hidden sm:flex items-center gap-2">
-            Talk to designer here <i class="fas fa-arrow-right text-green-400"></i>
+        <div class="text-white font-bold text-sm bg-gray-900/90 backdrop-blur-sm px-4 py-2 rounded-xl border border-gray-700 shadow-xl hidden sm:flex items-center gap-2 transform transition-transform hover:scale-105">
+            Talk to designer here <i class="fas fa-arrow-right text-green-400 animate-pulse"></i>
         </div>
         
         <a href="https://wa.me/918822967314?text=Hello%20Abhik,%20I%20am%20inquiring%20about%20your%20digital%20development%20services." 
            target="_blank"
-           class="relative flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full text-3xl transition-transform hover:scale-110 shadow-lg z-10">
-            <span class="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75"></span>
+           class="relative flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full text-3xl transition-all duration-300 hover:scale-110 hover:bg-green-400 shadow-[0_0_20px_rgba(34,197,94,0.4)] z-10 group">
+            <span class="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75 group-hover:animate-none"></span>
             <i class="fab fa-whatsapp relative z-10"></i>
         </a>
     </div>
 
     <script>
+        // --- SCROLL REVEAL ANIMATIONS ---
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: stop observing once revealed
+                    // revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { 
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
         // --- TYPEWRITER & DYNAMIC ICONS ---
         const data = [
             { word: "Digital Portfolios", icon: "fas fa-briefcase text-blue-400" },
             { word: "Web Games", icon: "fas fa-gamepad text-green-400" },
             { word: "Wedding Websites", icon: "fas fa-heart text-pink-400" }, 
-            { word: "Wish Links", icon: "fas fa-star text-yellow-400" },
+            { word: "Resume Builders", icon: "fas fa-file-invoice text-cyan-400" },
             { word: "Utility Tools", icon: "fas fa-tools text-orange-400" }
         ];
         
@@ -392,7 +387,7 @@
                 dynamicIcon.className = `${iconClass} text-4xl`;
                 dynamicIcon.classList.add("icon-fade-in");
                 dynamicIcon.classList.remove("icon-fade-out");
-            }, 300); // Wait for fade out
+            }, 300);
         }
 
         function typeWriter() {
@@ -417,7 +412,6 @@
                 i++;
                 if (i >= data.length) i = 0;
                 
-                // Update icon when word switches
                 updateIcon(data[i].icon);
                 
                 typeSpeed = 500;
@@ -434,6 +428,7 @@
         function confirmGame(url) {
             proceedBtn.href = url;
             modal.classList.remove('hidden');
+            // Tiny delay to allow display block to apply before animating opacity
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modalContent.classList.remove('scale-95');
@@ -450,34 +445,17 @@
             }, 300); 
         }
 
-        // --- PROMO MODAL LOGIC ---
-        const promoModal = document.getElementById('promoModal');
-        const promoModalContent = document.getElementById('promoModalContent');
-
-        function showPromoModal() {
-            promoModal.classList.remove('hidden');
-            setTimeout(() => {
-                promoModal.classList.remove('opacity-0');
-                promoModalContent.classList.remove('scale-95');
-                promoModalContent.classList.add('scale-100');
-            }, 10);
-        }
-
-        function closePromoModal() {
-            promoModal.classList.add('opacity-0');
-            promoModalContent.classList.remove('scale-100');
-            promoModalContent.classList.add('scale-95');
-            setTimeout(() => {
-                promoModal.classList.add('hidden');
-            }, 300);
-            
-            // Stop event bubbling if a link/button inside the ad is clicked, preventing re-opening issues
-            event.stopPropagation();
-        }
-
         window.onload = () => {
             updateIcon(data[0].icon); 
             setTimeout(typeWriter, 500);
+            
+            // Add 'active' to elements already in view on load
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if(rect.top < window.innerHeight) {
+                    el.classList.add('active');
+                }
+            });
         };
     </script>
 </body>
