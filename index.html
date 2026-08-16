@@ -82,7 +82,7 @@
             border-color: rgba(59, 130, 246, 0.5);
         }
         
-        /* Fixed Icon Animation - Simply gets a little bigger from its current spot */
+        /* Fixed Icon Animation */
         .project-card i {
             transition: transform 0.3s ease;
             transform-origin: left center;
@@ -96,7 +96,7 @@
             transition: color 0.3s ease;
         }
         .project-card:hover h3 {
-            color: #60a5fa; /* Text Blue Highlight */
+            color: #60a5fa;
         }
 
         /* Dynamic Icon Transition */
@@ -123,7 +123,7 @@
             transform: translateY(0);
         }
         
-        /* Staggered transition delay for grid items */
+        /* Staggered transition delay */
         .stagger-1 { transition-delay: 0.1s; }
         .stagger-2 { transition-delay: 0.2s; }
         .stagger-3 { transition-delay: 0.3s; }
@@ -188,6 +188,10 @@
                 <h3 class="text-xl md:text-2xl text-white font-semibold mb-1" id="greeting-text">
                     Welcome back, <span id="visitor-name" class="text-purple-400 cursor-pointer border-b border-dashed border-purple-500 hover:text-purple-300 transition-colors" title="Click to edit your name">Traveler</span>! 👋
                 </h3>
+                
+                <!-- NEW: Dynamic Festival Wish element -->
+                <p id="festival-wish" class="text-yellow-400 font-bold text-sm mb-2 h-5 transition-opacity duration-500"></p>
+
                 <p class="text-gray-400 text-sm">
                     Accessing from: <span id="visitor-platform" class="text-gray-200 font-mono font-bold bg-gray-800 px-2 py-0.5 rounded">Detecting...</span>
                 </p>
@@ -257,11 +261,12 @@
                 <p class="text-gray-400 text-sm relative z-10">Interactive, shareable greeting links optimized for high-volume network traffic.</p>
             </a>
 
+            <!-- NEW: ADRE Project description updated -->
             <a href="https://ab2001k.github.io/adre-prep" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-2">
                 <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <i class="fas fa-book-open text-3xl text-orange-400 mb-4 block relative z-10"></i>
                 <h3 class="text-xl font-bold mb-2 text-white relative z-10">ADRE Educational Portal</h3>
-                <p class="text-gray-400 text-sm relative z-10">Resource management portal compiled for Assam state examination preparation.</p>
+                <p class="text-gray-400 text-sm relative z-10">Resource management portal compiled for Assam state examination preparation. <br> <span class="text-green-400 font-semibold mt-1 inline-block">(Updated: Quiz Format added)</span></p>
             </a>
 
             <a href="https://ab2001k.github.io/resume/" target="_blank" class="project-card rounded-xl p-6 block relative overflow-hidden group reveal stagger-3 border-cyan-700/50">
@@ -319,20 +324,16 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (NEW: Removed direct phone number link) -->
     <footer class="bg-[#050810] py-16 border-t border-gray-800 pb-28 relative z-10">
         <div class="max-w-4xl mx-auto px-4 text-center reveal">
             <h3 class="text-lg font-bold text-white mb-8 uppercase tracking-widest flex justify-center items-center gap-2">
                 <i class="fas fa-link text-gray-500"></i> Connect & Follow
             </h3>
             
-            <div class="mb-8 hover:scale-105 transition-transform inline-block">
-                <a href="tel:+918822967314" class="inline-flex items-center gap-3 text-green-400 hover:text-green-300 transition-colors text-2xl font-bold bg-gray-900/80 border border-gray-700 py-3 px-6 rounded-full shadow-[0_0_15px_rgba(74,222,128,0.2)] hover:shadow-[0_0_25px_rgba(74,222,128,0.4)] backdrop-blur-sm" title="Call Designer Directly">
-                    <i class="fas fa-phone-alt animate-pulse"></i> +91 88229 67314
-                </a>
-            </div>
+            <!-- Direct Phone Number Block was removed from here -->
             
-            <div class="flex justify-center gap-6 mb-8">
+            <div class="flex justify-center gap-6 mb-8 mt-4">
                 <a href="https://facebook.com/ab2001k" target="_blank" class="text-gray-400 hover:text-blue-500 hover:-translate-y-1 transition-all text-3xl" title="Facebook">
                     <i class="fab fa-facebook"></i>
                 </a>
@@ -347,7 +348,11 @@
                 </a>
             </div>
 
-            <p class="text-gray-600 text-xs tracking-wider uppercase">
+            <div style="text-align: center; padding: 10px 0; color: var(--text-muted); font-size: 13px; font-weight: 500; letter-spacing: 1px;">
+                Designed by <a href="https://ab2001k.github.io/visit/" target="_blank" style="color: var(--neon-blue); text-decoration: none; font-weight: bold;">Abhik Dutta</a>
+            </div>
+
+            <p class="text-gray-600 text-xs tracking-wider uppercase mt-4">
                 &copy; <span id="copyright-year">2026</span> Abhik Dutta (ab2001k). All rights reserved.<br>
                 Unauthorized duplication of this portfolio's code is strictly prohibited.
             </p>
@@ -386,7 +391,6 @@
 
     <script>
         // --- EASTER EGGS ---
-        // 1. Console Egg
         console.log("%cHello Curious Developer! 🕵️‍♂️", "color: #60a5fa; font-size: 20px; font-weight: bold; padding: 5px 0;");
         console.log("%cLooks like you found my first easter egg. Type %cmatrixMode()%c in this console to see something cool.", "color: #ccc;", "color: #0f0; font-family: monospace; font-weight: bold;", "color: #ccc;");
         
@@ -401,7 +405,6 @@
             return "Matrix mode activated. Follow the white rabbit 🐇.";
         };
 
-        // 2. Clickable Egg on Hero Name
         let clickCount = 0;
         const heroName = document.getElementById('hero-name');
         heroName.addEventListener('click', (e) => {
@@ -411,7 +414,6 @@
                 e.target.classList.remove('from-blue-400', 'via-indigo-400', 'to-purple-400');
                 e.target.classList.add('from-yellow-400', 'via-gray-400', 'to-yellow-600');
                 
-                // Revert after 4 seconds
                 setTimeout(() => {
                     e.target.textContent = "Abhik";
                     e.target.classList.add('from-blue-400', 'via-indigo-400', 'to-purple-400');
@@ -441,7 +443,7 @@
                 let mins = now.getMinutes().toString().padStart(2, '0');
                 let secs = now.getSeconds().toString().padStart(2, '0');
                 let ampm = hours >= 12 ? 'PM' : 'AM';
-                hours = hours % 12 || 12; // 12-hour format
+                hours = hours % 12 || 12; 
                 
                 liveTime.textContent = `${hours}:${mins}:${secs} ${ampm}`;
                 copyrightYear.textContent = now.getFullYear();
@@ -485,6 +487,73 @@
                     nameSpan.textContent = cleanedName;
                 }
             });
+        }
+
+        // --- NEW: DYNAMIC FESTIVAL WISH LOGIC ---
+        function initFestivalWish() {
+            // Calendar of global, Indian, and Assam-specific festivals
+            const festivalCalendar = {
+                "01-01": ["Happy New Year!"],
+                "01-14": ["Happy Makar Sankranti!", "Happy Magh Bihu!"],
+                "01-15": ["Happy Magh Bihu!", "Happy Pongal!"],
+                "01-23": ["Netaji Jayanti!"],
+                "01-26": ["Happy Republic Day!"],
+                "01-31": ["Me-Dam-Me-Phi!"],
+                "02-14": ["Happy Valentine's!"],
+                "02-28": ["National Science Day!"],
+                "03-08": ["Happy Women's Day!"],
+                "04-14": ["Happy Rongali Bihu!", "Happy Bengali New Year!"],
+                "04-15": ["Happy Rongali Bihu!"],
+                "04-22": ["Happy Earth Day!"],
+                "05-01": ["Happy Labour Day!"],
+                "06-05": ["World Environment Day!"],
+                "06-21": ["World Music Day!", "Intl. Yoga Day!"],
+                "08-15": ["Happy Independence Day!"],
+                "09-05": ["Happy Teachers' Day!"],
+                "10-02": ["Gandhi Jayanti!"],
+                "10-18": ["Happy Kati Bihu!"],
+                "10-31": ["Happy Halloween!", "National Unity Day!"],
+                "11-14": ["Happy Children's Day!"],
+                "12-02": ["Happy Asom Divas!"],
+                "12-25": ["Merry Christmas!"],
+                "12-31": ["Happy New Year's Eve!"]
+            };
+
+            const now = new Date();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const dateKey = `${month}-${day}`;
+            
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const currentDayName = daysOfWeek[now.getDay()];
+
+            // Fallback positive wishes if no specific festival exists today
+            const defaultWishes = [`Happy ${currentDayName}!`, "Keep Coding!", "Stay Awesome!", "Have a great day!"];
+            
+            const wishesToShow = festivalCalendar[dateKey] || defaultWishes;
+            const wishElement = document.getElementById('festival-wish');
+            
+            let currentWishIndex = 0;
+
+            function rotateWish() {
+                // Fade out
+                wishElement.style.opacity = 0;
+                
+                // Change text and fade in after a short delay
+                setTimeout(() => {
+                    wishElement.textContent = wishesToShow[currentWishIndex];
+                    wishElement.style.opacity = 1;
+                    currentWishIndex = (currentWishIndex + 1) % wishesToShow.length;
+                }, 500); 
+            }
+
+            // Show first wish immediately
+            rotateWish();
+
+            // If there's more than one wish to show today, swap them every 5 seconds
+            if (wishesToShow.length > 1) {
+                setInterval(rotateWish, 5000);
+            }
         }
 
         // --- SCROLL REVEAL ANIMATIONS ---
@@ -585,6 +654,7 @@
         // --- INIT ---
         window.onload = () => {
             initTracker();
+            initFestivalWish(); // Start the new dynamic wish system
             updateIcon(data[0].icon); 
             setTimeout(typeWriter, 500);
             
